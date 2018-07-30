@@ -1,13 +1,10 @@
--Make sure everything is test driven
--Design Schema
--Create models and write model tests
--rails -d=pg
--use pry
--make sure to add model validations and use shouldamatchers
 -add blocking later
+-add unique index to handle
+-add validation test
 
 blocking of users -
 Could do the basic 'where users '
+
 
 
 --features to look into-
@@ -27,3 +24,12 @@ Messaging
 
 --other notes--
 refresh yourself on bcrypt and how devise actually works
+React, Java, Spring Boot, Redux, Jest, Junit/Mockito
+Look into how to use Cucumber and Jasmine
+
+
+
+--Change navbar to include sign up and sign out
+
+--commit notes--
+Removed turbolinks, added capybara testing, factory_bot_rails, devise views for users, home controller, did test driven dev for navbar and user sign up process
