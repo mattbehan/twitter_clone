@@ -23,7 +23,7 @@ module SupportMacros
 	end
 
 	module Features
-		def sign_up_with(email, password, name, handle)
+		def sign_up_with email, password, name, handle
 			visit new_user_registration_path
 			fill_in 'Email', with: email
 			fill_in 'Name', with: name
@@ -33,11 +33,16 @@ module SupportMacros
 			click_button 'Sign up'
 		end
 
-		def sign_in_with(email, password)
-			visit new_user_registration_path
+		def sign_in_with email, password
+			visit new_user_session_path
 			fill_in 'Email', with: email
 			fill_in 'Password', with: password
-			click_button 'Log In'
+			click_button 'Log in'
+		end
+
+		def create_tweet_with message
+			fill_in "tweet", with: "New Tweet"
+			click_button "Create Tweet"
 		end
 	end
 

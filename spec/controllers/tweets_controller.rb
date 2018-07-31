@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+
+
+RSpec.describe TweetsController, type: :controller do
 	describe "#index" do
 		context "when a user is not logged in" do
 			subject { get :index }
@@ -17,6 +19,10 @@ RSpec.describe HomeController, type: :controller do
 			end
 			it { should render_template('index') }
 		end
+	end
+
+	describe "#create" do
+		
 	end
 
 end
