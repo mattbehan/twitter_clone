@@ -1,6 +1,5 @@
 require 'rails_helper'
-require_relative '../support/support_macros'
-include SupportMacros
+
 
 
 RSpec.describe HomeController, type: :controller do

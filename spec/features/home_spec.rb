@@ -10,7 +10,7 @@ feature "User Visits Home Page" do
 		expect(page).to have_css('.sign-up-button')
 		expect(page).to have_button('Sign Up')
 		expect(current_path).to eq('/')
-		save_and_open_page
+		# save_and_open_page
 	end
 
 	scenario "is logged in" do

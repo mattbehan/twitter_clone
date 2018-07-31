@@ -43,6 +43,7 @@ group :development, :test do
   gem 'fuubar'
   gem 'capybara'
   gem 'faker'
+  gem 'launchy'
 end
 
 group :test do
