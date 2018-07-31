@@ -3,5 +3,6 @@
 <% if user_signed_in? %>
 
 	<%= render partial: "tweets/new_tweet", locals: {tweet: @tweet} %>
-
+<% else %>
+	<%= link_to "Sign in to create a tweet!", new_user_session_path %>
 <% end %>
