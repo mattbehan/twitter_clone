@@ -1,6 +1,9 @@
 -add blocking later
--add unique index to handle
--add validation test
+-add functionality to create tweet
+-add must be logged in and must have permission functionality and tests
+-add authentication / authorization for tweets - make sure other users can't edit others' tweets
+-remove controller macros since they aren't needed (using warden's login_as method)
+
 
 blocking of users -
 Could do the basic 'where users '
@@ -32,4 +35,4 @@ Look into how to use Cucumber and Jasmine
 --Change navbar to include sign up and sign out
 
 --commit notes--
-Removed turbolinks, added capybara testing, factory_bot_rails, devise views for users, home controller, did test driven dev for navbar and user sign up process
+Add unique to username

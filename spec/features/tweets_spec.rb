@@ -1,29 +1,31 @@
 require 'rails_helper'
 
 feature 'Creating a tweet' do
-	let(:user) {create :user}
+	subject(:user) {create :user}
 	context "as a logged in user" do
+		# with these end to end tests I'm allowing more than one assertion per test to avoid repeated setup
 		scenario "with a valid tweet" do
 			login_as(user)
-			visit root_path
+			visit new_tweet_path
 			create_tweet_with("New tweet")
-			expect(page).to have_content("Your tweet was created")
+			expect(current_path).to eq(root_path)
+			expect(Tweet.last.user_id).to eq(user.id)
 		end
 
 		scenario 'with a blank tweet' do
+			total_tweets = Tweet.count
 			login_as(user)
-			visit root_path
+			visit new_tweet_path
 			create_tweet_with("")
 			expect(page).to have_content("Message can't be blank")
+			expect(total_tweets).to eq(Tweet.count)
 		end
 	end
 
 	context "while not logged in" do
 		scenario "with a valid tweet" do
-			visit root_path
-			create_tweet_with("New tweet")
-			expect(page).to have_content("You must be logged in for that action")
-			expect(current_path).to eq(unauthorized_user_path)
+			visit new_tweet_path
+			expect(page).to have_no_button("Create Tweet")
 		end
 	end
 

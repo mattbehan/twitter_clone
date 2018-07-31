@@ -14,6 +14,8 @@ feature "User Visits Home Page" do
 	end
 
 	scenario "is logged in" do
+		login_as(user)
+		visit root_path
 		expect(page).to have_no_content('Sign In')
 		expect(page).to have_no_content('Sign up')
 		expect(current_path).to eq('/')

@@ -1,0 +1,8 @@
+<%= render partial: "/errors", locals: {resource: tweet} %>
+
+<%= form_for(:tweet, url: tweets_path, method: :post) do |f|%>
+	<%= f.text_field :message, placeholder: "Enter text here..." %>
+	
+	<%= f.submit "Create Tweet" %>
+
+<% end %>

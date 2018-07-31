@@ -41,7 +41,7 @@ module SupportMacros
 		end
 
 		def create_tweet_with message
-			fill_in "tweet", with: "New Tweet"
+			fill_in "tweet[message]", with: message
 			click_button "Create Tweet"
 		end
 	end
