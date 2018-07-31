@@ -62,7 +62,6 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, :type => :controller
-  config.include SupportMacros::Controllers, type: :controller
   config.include SupportMacros::Features, type: :feature
   Shoulda::Matchers.configure do |config|
   config.integrate do |with|
