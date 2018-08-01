@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = []
+3.times do
+	user = User.new(
+		name: Faker::Name.name,
+		handle: Faker::Name.unique.first_name,
+		email: Faker::Internet.unique.email,
+		password: "password"
+		)
+	user.skip_confirmation!
+	user.save
+	users.push(user)
+end
+
+users.each do |user1|
+	users.each do |user2|
+		following = Following.new(followed_user_id: user1.id, following_user_id: user2.id)
+		following.save
+	end
+end
