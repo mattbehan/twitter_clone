@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = []
-3.times do
+10.times do
 	user = User.new(
 		name: Faker::Name.name,
 		handle: Faker::Name.unique.first_name,

@@ -20,9 +20,12 @@ RSpec.describe Blocking, type: :model do
 		end
 	end
 
-	describe "#destroy_followings" do
+	describe "#create" do
+		let(:user2) {create :user}
+		let(:following) {Following.create(followed_user_id: user1.id, following_user_id: user2.id)} 
 		it "destroys the associated followings of the blocker and the blocked" do
-
+			Blocking.create(user_id: user1.id, blocked_user_id: user2.id)
+			expect { following.reload }.to raise_error ActiveRecord::RecordNotFound
 		end
 	end
 end

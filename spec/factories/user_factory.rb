@@ -3,8 +3,8 @@ FactoryBot.define do
 	factory :user do
 
 		name Faker::Name.name
-		handle Faker::Name.unique.first_name
-		email Faker::Internet.unique.email
+		sequence(:handle) { |n| "user#{n}" }
+		sequence(:email) { |n| "user#{n}@test.com" }
 		password "password"
 		confirmed_at Time.now
 
