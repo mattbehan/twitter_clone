@@ -27,3 +27,7 @@ users.each do |user1|
 	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
 	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
 end
+
+matt = User.first
+matt.email = "mattbehan@gmail.com"
+matt.save

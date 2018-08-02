@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 	end
 	describe "basic associations" do
 		it {should have_many(:tweets)}
-		
+
 		it {should have_many(:followings_following)}
 		it {should have_many(:followings_followers)}
 		it {should have_many(:users_followed).through(:followings_following).source(:followed_user)}
@@ -17,5 +17,7 @@ RSpec.describe User, type: :model do
 		it {should have_many(:blockings_blocked_users)}
 		it {should have_many(:blocked_users).through(:blockings)}
 		it {should have_many(:users_blocked_by).through(:blockings_blocked_users)}
+		
+		it {should have_one(:profile)}
 	end
 end
