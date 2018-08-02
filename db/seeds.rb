@@ -24,4 +24,6 @@ users.each do |user1|
 		following = Following.new(followed_user_id: user1.id, following_user_id: user2.id)
 		following.save
 	end
+	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
+	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
 end
