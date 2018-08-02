@@ -8,6 +8,11 @@ FactoryBot.define do
 		password "password"
 		confirmed_at Time.now
 
+		factory :user2 do
+			email "user2@gmail.com"
+			handle "user2"
+		end
+
 	end
 
 end
