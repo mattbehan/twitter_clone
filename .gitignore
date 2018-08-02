@@ -14,7 +14,7 @@
 !/tmp/.keep
 
 # Ignore project outline
-outline.txt
+/outline.txt
 
 /node_modules
 /yarn-error.log

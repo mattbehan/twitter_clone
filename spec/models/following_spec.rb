@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Following, type: :model do
 	describe "basic validations" do
-
-
-
 		it { should validate_presence_of(:followed_user_id) }
 		it { should validate_presence_of(:following_user_id) }
 		# necessary to test scoped uniqueness with shoulda matchers - see https://github.com/thoughtbot/shoulda-matchers/issues/745
