@@ -5,11 +5,12 @@ class UsersController < ApplicationController
 
 	def show
 		must_be_allowed_to_view(@user)
+		@timeline = @user.timeline
 	end
 
 	protected
 
 	def set_user
-		@user = User.includes(:profile, :users_followed).find(params[:id])
+		@user = User.find(params[:id])
 	end
 end

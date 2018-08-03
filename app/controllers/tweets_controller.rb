@@ -4,9 +4,6 @@ class TweetsController < ApplicationController
 	before_action :set_tweet, only: [ :edit, :update, :destroy]
 	before_action :must_be_logged_in, only: [:create, :new]
 
-	def timeline
-	end
-
 	def new
 		@tweet = Tweet.new
 	end

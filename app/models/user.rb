@@ -43,4 +43,9 @@ class User < ApplicationRecord
     blocked_users << target_user
   end
 
+  def timeline
+    # Tweet.where("user_id IN (?) OR user_id = ?", users_followed_ids, id)
+    Tweet.includes(user: [:profile]).where(user_id: users_followed_ids << id)
+  end
+
 end

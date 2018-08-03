@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 	# these aren't needed from the specs
 	# resources :tweets, only: [:edit, :new, :update, :destroy, :create]
 	resources :tweets, only: [:new, :create]
-	get "tweets/timeline" => "tweets#timeline", as: "tweets_timeline_path"
 
 	resources :users, only: [:show] do
 		resource :profile, only: [:edit, :update]
