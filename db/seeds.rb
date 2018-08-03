@@ -31,8 +31,10 @@ users.each do |user1|
 		following = Following.new(followed_user_id: user1.id, following_user_id: user2.id)
 		following.save
 	end
-	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
-	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
+	tweet1 = Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
+	tweet1.update(created_at: Faker::Date.between(80.days.ago, 15.seconds.ago))
+	tweet2 = Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
+	tweet2.update(created_at: Faker::Date.between(80.days.ago, 15.seconds.ago))
 end
 
 

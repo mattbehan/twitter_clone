@@ -1,12 +1,20 @@
 <div class="row">
-	<div class="col-sm"> 
+	<div class="col-3"> 
 		<div class="row">
-			<%= image_tag tweet.user.profile.picture.url(:thumb) %> 
+			<%= link_to user_path(tweet.user) do %>
+				<%= image_tag tweet.user.profile.picture.url(:thumb) %> 
+			<% end %>
 		</div>
 		<div class="row">
-			<%= tweet.user.handle %>
+			<%= link_to user_path(tweet.user) do %>
+				<%= tweet.user.handle %>
+			<% end %>
 		</div>
-	<div class="col-md"> 
+		<div class="row">
+			<%= time_ago_in_words(tweet.created_at) %> ago
+ 		</div>
+	</div>
+	<div class="col"> 
 		<div class="row">
 			<%= tweet.message %> 
 		</div>
