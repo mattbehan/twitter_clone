@@ -1,11 +1,13 @@
 class ProfilesController < ApplicationController
-	before_action :set_profile
+	before_action :must_be_logged_in, :set_profile
+	before_action do
+		must_be_owner(@profile.user_id)
+	end
 
 	def edit
 	end
 
 	def update
-		must_be_owner(@profile.user_id)
 		@profile.update(profile_update_params)
 		if @profile.valid?
 			redirect_to user_path(current_user)

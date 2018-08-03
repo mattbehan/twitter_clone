@@ -26,4 +26,21 @@ class User < ApplicationRecord
 
   has_one :profile
 
+  # these are all really just helper methods
+  def follows? target_user
+    users_followed.include?(target_user)
+  end
+
+  def blocked?
+    blocked_users.include?(target_user)
+  end
+
+  def follow target_user
+    users_followed << target_user
+  end
+
+  def block target_user
+    blocked_users << target_user
+  end
+
 end

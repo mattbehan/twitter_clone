@@ -7,3 +7,13 @@
 		<% end %>
 	</div>
 </div>
+
+<% if allowed_to_follow?(@user) %>
+	<%= button_to "Follow", user_followings_path(@user), class: "btn btn-primary" %>
+<% end %>
+
+<% if allowed_to_block?(@user) %>
+	<%= button_to "Block", user_blockings_path(@user), class: "btn btn-danger" %>
+<% end %>
+
+<h1> allowed to view: <%= allowed_to_view?(@user) %> </h1>

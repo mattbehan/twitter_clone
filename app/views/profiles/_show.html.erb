@@ -1,17 +1,17 @@
 <div class="row"> <div class="col-sm"> <%= image_tag profile.picture.url(:thumb) %> </div> </div>
 
 <% if !profile.bio.blank? %>
-	<div class="row"> <div class="col-sm"> <%= profile.bio %> </div> </div>
+	<div class="row"> <div class="col-sm"> Bio: <%= profile.bio %> </div> </div>
 <% end %>
 
 <% if !profile.location.blank? %>
-	<div class="row"> <div class="col-sm"> <%= profile.location %> </div> </div>
+	<div class="row"> <div class="col-sm"> Location: <%= profile.location %> </div> </div>
 <% end %>
 
 <% if !profile.website.blank? %>
-	<div class="row"> <div class="col-sm"> <%= profile.website %> </div> </div>
+	<div class="row"> <div class="col-sm"> Website: <%= profile.website %> </div> </div>
 <% end %>
 
 <% if !profile.birthday.blank? %>
-	<div class="row"> <div class="col-sm"> <%= profile.birthday %> </div> </div>
+	<div class="row"> <div class="col-sm"> Birthday:<%= profile.birthday %> </div> </div>
 <% end %>

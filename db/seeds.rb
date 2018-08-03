@@ -17,10 +17,17 @@ users = []
 	user.skip_confirmation!
 	user.save
 	users.push(user)
+
+	profile = user.profile
+	profile.bio = Faker::Lorem.paragraph
+	profile.website = Faker::Internet.url
+	profile.location = Faker::Address.city
+	profile.birthday = Faker::Date.between(80.years.ago, 15.years.ago)
+	profile.save
 end
 
 users.each do |user1|
-	users.each do |user2|
+	users.sample(5).each do |user2|
 		following = Following.new(followed_user_id: user1.id, following_user_id: user2.id)
 		following.save
 	end
@@ -28,6 +35,9 @@ users.each do |user1|
 	Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
 end
 
+
 matt = User.first
 matt.email = "mattbehan@gmail.com"
+matt.name = "matt behan"
+matt.handle = "mattbehan"
 matt.save

@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
 
+	before_action :set_user
+
+
 	def show
-		@user = User.includes(:profile).find(params[:id])
+		must_be_allowed_to_view(@user)
+	end
+
+	protected
+
+	def set_user
+		@user = User.includes(:profile, :users_followed).find(params[:id])
 	end
 end

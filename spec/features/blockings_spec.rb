@@ -6,26 +6,26 @@ feature 'Blocking another user' do
 	before {login_as(user)}
 
 	context 'when the user is not already already blocked by the other user' do
-		scenario "creates a following between the user" do
-			visit user_path(user_to_follow)
-			click_button "Follow"
-			expect(Following.last.followed_user_id).to eq(user_to_follow.id)
-			expect(Following.last.following_user_id).to eq(user.id)
+		scenario "creates a blocking between the user" do
+			visit user_path(user_to_block)
+			click_button "Block"
+			expect(Blocking.last.blocked_user_id).to eq(user_to_block.id)
+			expect(Blocking.last.user_id).to eq(user.id)
 		end
 	end
 
-	context 'when the user is already following the user' do
-		scenario "there is no option to follow the other user" do
-			Following.create(followed_user_id: user_to_follow.id, following_user_id: user.id)
-			visit user_path(user_to_follow)
-			expect(page).to have_no_button('Follow')
+	context 'when the user is already blocking the user' do
+		scenario "there is no option to block the other user" do
+			Blocking.create(blocked_user_id: user_to_block.id, user_id: user.id)
+			visit user_path(user_to_block)
+			expect(page).to have_no_button('Block')
 		end
 	end
 
 	context 'when the user is blocked by the other user' do
 		scenario "the user is redirected to unauthorized" do
-			Blocking.create(user_id: user_to_follow.id, blocked_user_id: user.id)
-			visit user_path(user_to_follow)
+			Blocking.create(user_id: user_to_block.id, blocked_user_id: user.id)
+			visit user_path(user_to_block)
 			expect(current_path).to eq("/unauthorized")
 		end
 	end
@@ -33,14 +33,13 @@ end
 
 feature 'Viewing the content of a user who has blocked you' do
 
-	subject(:following) {create :following}
-	before {login_as(following.following_user)}
+	let(:blocking) {create :blocking}
+	before {login_as(blocking.blocked_user)}
 
 
-	scenario "the other user is blocked and " do 
-		visit user_path(following.followed_user_id)
-		expect(page).to have_no_button('Unfollow')
-		expect { following.reload }.to raise_error ActiveRecord::RecordNotFound
+	scenario "the user is redirected to an unauthorized page" do 
+		visit user_path(blocking.user_id)
+		expect(current_path).to eq("/unauthorized")
 	end
 
 end

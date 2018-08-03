@@ -30,26 +30,3 @@ feature 'Following another user' do
 		end
 	end
 end
-
-feature 'Unfollowing another user' do
-
-	subject(:following) {create :following}
-	before {login_as(following.following_user)}
-
-	context 'when the following already exists' do
-		scenario "the following is destroyed" do
-			visit user_path(following.followed_user_id)
-			click_button "Unfollow"
-			expect(page).to have_no_content("Sign up")
-		end
-	end
-
-	context 'when the following does not exist' do
-		scenario "there is no option to unfollow" do 
-			visit user_path(following.followed_user_id)
-			expect(page).to have_no_button('Unfollow')
-			expect { following.reload }.to raise_error ActiveRecord::RecordNotFound
-		end
-	end
-
-end
