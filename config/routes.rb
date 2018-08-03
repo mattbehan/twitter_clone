@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
 	resources :users, only: [:show] do
 		resource :profile, only: [:edit, :update]
+		resources :followings, only: [:create, :destroy]
+		resources :blockings, only: [:create, :destroy]
 	end
 
 	get "/unauthorized" => 'home#unauthorized', as: "unauthorized_path"
