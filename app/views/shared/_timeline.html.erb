@@ -1,0 +1,5 @@
+<div class="col-8">
+	<% if timeline.any? %>
+		<%= render partial: "shared/timeline_tweets", collection: timeline, as: :tweet %>
+	<% end %>
+</div>

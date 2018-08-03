@@ -1,10 +1,10 @@
-<%= render partial: "/errors", locals: {resource: tweet} %>
-
+<%= render partial: "shared/errors", locals: {resource: tweet} %>
 <%= form_for(:tweet, url: tweets_path, method: :post) do |f|%>
 	<div class="form-group row">
 		<div class="col-sm">
-		<%= f.text_field :message, placeholder: "Enter text here..." %>
-		
-		<%= f.submit "Create Tweet", class: "btn btn-primary" %>
+			<%= f.text_field :message, placeholder: "Enter text here..." %>
+			
+			<%= f.submit "Create Tweet", class: "btn btn-primary" %>
+		</div>
 	</div>
 <% end %>

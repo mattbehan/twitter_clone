@@ -1,22 +1,12 @@
 <div class="row justify-content-between">
 	<div class="col-3">
-		<%= render partial: "profiles/show", locals: {profile: @user.profile} %>
+		<%= render partial: "shared/profile_snippet", locals: {profile: @user.profile} %>
 
 		<% if owner?(@user.id) %>
 			<%= link_to "Edit Profile", edit_user_profile_path([@user.id, @user.profile.id]), class: "btn btn-primary" %>
 		<% end %>
 	</div>
 
-	<div class="col-8">
-		<%= render partial: "tweets/show", collection: @timeline, as: :tweet %>
-	</div>
+	<%= render partial: "shared/timeline", locals: {timeline: @timeline} %>
+
 </div>
-
-<% if allowed_to_follow?(@user) %>
-	<%= button_to "Follow", user_followings_path(@user), class: "btn btn-primary" %>
-<% end %>
-
-<% if allowed_to_block?(@user) %>
-	<%= button_to "Block", user_blockings_path(@user), class: "btn btn-danger" %>
-<% end %>
-

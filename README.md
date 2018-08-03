@@ -1,9 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
 
 Notes:
 
@@ -18,6 +14,7 @@ Icebox/Todo: benchmarking, pagination, ajaxing + react, private profiles
 Regrets: Not using git boards, not asking more questions on intended specifications and functionality, not starting before moving week
 
 * Ruby version
+2.4.4
 
 * System dependencies
 * I believe the only dependency you may have is imagemagick (mac and linux) or file (windows) for paperclip
@@ -29,8 +26,11 @@ See https://github.com/thoughtbot/paperclip#requirements
 * Database creation
 
 * Database initialization
+rake db:migrate:reset
+rake db:seed
 
 * How to run the test suite
+rspec spec
 
 * Services (job queues, cache servers, search engines, etc.)
 

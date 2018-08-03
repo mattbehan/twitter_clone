@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 	def show
 		must_be_allowed_to_view(@user)
-		@timeline = @user.timeline
+		@timeline = @user.tweets
 	end
 
 	protected
