@@ -2,6 +2,8 @@
 
 <% if user_signed_in? %>
 
+	<%= render partial: "profiles/show", locals: {profile: current_user.profile} %>
+
 	<%= render partial: "tweets/new_tweet", locals: {tweet: @tweet} %>
 <% else %>
 	<%= link_to "Sign in to create a tweet!", new_user_session_path %>

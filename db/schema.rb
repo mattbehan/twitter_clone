@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180802011902) do
+ActiveRecord::Schema.define(version: 20180802230714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 20180802011902) do
     t.index ["followed_user_id", "following_user_id"], name: "index_followings_on_followed_user_id_and_following_user_id", unique: true
     t.index ["followed_user_id"], name: "index_followings_on_followed_user_id"
     t.index ["following_user_id"], name: "index_followings_on_following_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.text "bio"
+    t.string "location"
+    t.string "website"
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -69,5 +84,6 @@ ActiveRecord::Schema.define(version: 20180802011902) do
   add_foreign_key "blockings", "users"
   add_foreign_key "followings", "users", column: "followed_user_id", on_delete: :cascade
   add_foreign_key "followings", "users", column: "following_user_id", on_delete: :cascade
+  add_foreign_key "profiles", "users"
   add_foreign_key "tweets", "users", on_delete: :cascade
 end

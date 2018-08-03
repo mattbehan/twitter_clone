@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  after_create {
+    Profile.create(user_id: self.id)
+  }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -19,5 +23,7 @@ class User < ApplicationRecord
 
   has_many :blocked_users, through: :blockings
   has_many :users_blocked_by, through: :blockings_blocked_users, source: :user
+
+  has_one :profile
 
 end

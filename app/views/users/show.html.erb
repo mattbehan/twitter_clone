@@ -1,0 +1,9 @@
+<%= render partial: "profiles/show", locals: {profile: @user.profile} %>
+<div class="row">
+	<div class="col-sm">
+
+		<% if user_signed_in? && current_user.id == @user.id %>
+			<%= link_to "Edit Profile", edit_user_profile_path([@user.id, @user.profile.id]) %>
+		<% end %>
+	</div>
+</div>

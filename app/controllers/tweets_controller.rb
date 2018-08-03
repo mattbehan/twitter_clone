@@ -31,7 +31,7 @@ class TweetsController < ApplicationController
 	# end
 
 
-	private
+	protected
 
 	def set_tweet
 		@team = Tweet.find(params[:id])
