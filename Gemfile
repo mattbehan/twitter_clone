@@ -28,6 +28,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem "paperclip", "~> 6.0.0"
+gem 'faker'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -43,7 +44,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'fuubar'
   gem 'capybara'
-  gem 'faker'
   gem 'launchy'
 end
 
