@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Blocking, type: :model do
-	let(:user1) {create(:user)}
+	let(:user1) {build(:user)}
+	let(:user2) {build :user}
+
 
 	describe "basic validations" do
 		it { should validate_presence_of(:user_id) }
@@ -21,7 +23,6 @@ RSpec.describe Blocking, type: :model do
 	end
 
 	describe "#create" do
-		let(:user2) {create :user}
 		let(:following) {Following.create(followed_user_id: user1.id, following_user_id: user2.id)} 
 		it "destroys the associated followings of the blocker and the blocked" do
 			Blocking.create(user_id: user1.id, blocked_user_id: user2.id)

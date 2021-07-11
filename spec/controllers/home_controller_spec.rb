@@ -5,16 +5,16 @@ RSpec.describe HomeController, type: :controller do
 		let(:user) {create(:user)}
 		context "when a user is not logged in" do
 			subject { get :index }
-			it "returns a success response" do
-				expect(subject).to be_success
+			it "returns a http status 200 code" do
+				expect(response.status).to eq(200)
 			end
 			it { should render_template('index') }
 		end
 		context "when a user is logged in" do 
 			let (:user) {login_as(user)}
 			subject { get :index }
-			it "returns a success response" do
-				expect(subject).to be_success
+			it "returns a http status 200 code" do
+				expect(response.status).to eq(200)
 			end
 			it { should render_template('index') }
 		end

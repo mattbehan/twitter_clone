@@ -4,5 +4,7 @@ class Tweet < ApplicationRecord
 
 	belongs_to :user
 
-	default_scope -> {order(created_at: :desc)}
+	default_scope -> { order(created_at: :desc) }
+	scope :last_created, -> { where("created_at < ?", Time.now).first }
+	scope :first_created, -> { last }
 end

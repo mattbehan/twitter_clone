@@ -20,13 +20,11 @@ Pry for debugging
 consolidate all controller and view calls to visibility actions (e.g. must_be_logged_in, follows?) to visibility methods that set instance variables for pages through application controller helper methods that set instance variables (e.g. @allowed_to_view , @allowed_to_follow) and optimize these methods, shoveling name off user onto profile model and defaulting :handle to :name, move timeline and user snippet display to shared view folder since used in multiple pages
 
 ##Icebox/Todo 
-benchmarking, pagination, ajaxing + react, private profiles
+benchmarking, pagination/load as you scroll, ajaxing + react, private profiles, chat through actioncable, 
 
 * Ruby version
 2.4.4
 
-* System dependencies
-* I believe the only dependency you may have is imagemagick (mac and linux) or file (windows) for paperclip
 
 See https://github.com/thoughtbot/paperclip#requirements
 
