@@ -103,4 +103,8 @@ Rails.application.configure do
     :domain         => 'gmail.com',
     :enable_starttls_auto => true
   }
+
+
+  config.active_storage.service = :amazon
+
 end

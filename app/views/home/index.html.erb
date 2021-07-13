@@ -1,16 +1,15 @@
-<h1> Home page </h1>
-
 <% if user_signed_in? %>
 
 	<div class="row justify-content-between">
-		<div class="col-3">
+		<div class="col-8 snippet-container">
+
 			<%= render partial: "shared/profile_snippet", locals: {profile: @user.profile} %>
 
 			<%= render partial: "tweets/new_tweet", locals: {tweet: @tweet} %>
+
+			<%= render partial: "shared/timeline", locals: {timeline: @timeline} %>
+
 		</div>
-
-		<%= render partial: "shared/timeline", locals: {timeline: @timeline} %>
-
 	</div>
 
 <% else %>

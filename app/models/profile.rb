@@ -1,14 +1,21 @@
 class Profile < ApplicationRecord
 	validates :user_id, presence: true, uniqueness: true
 	belongs_to :user
+	has_one_attached :picture
+	has_one_attached :background_picture
 
-	# has_attached_file :picture, styles: {
-	# 	thumb: '100x150>',
-	# 	square: '200x200#',
-	# 	medium: '300x300>'
-	# }, default_url: "/images/:style/missing.png"
+	validates :picture, file_content_type: {
+		allow: ["image/jpeg", "image/png", "image/jpg"],
+		if: -> { picture.attached? },
+	}
 
-	# validates_attachment :picture,
-	# 	:content_type => { :content_type => /image/, :message => "Picture must be an image" },
-	# 	:file_name => { matches: [/png\z/, /jpe?g\z/, /jpg\z/, /JPG\z/, /PNG\z/], :message => "invalid. Supported extensions are: .png, .PNG, .jpeg, .jpg, .JPG" }
+	validates :background_picture, file_content_type: {
+		allow: ["image/jpeg", "image/png", "image/jpg"],
+		if: -> { background_picture.attached? },
+	}
+
+	# so
+	def snippet_fields
+		attributes.select { |field_name, val| ["birthday", "website", "bio", "location"].member?(field_name) && !val.blank? }
+	end
 end

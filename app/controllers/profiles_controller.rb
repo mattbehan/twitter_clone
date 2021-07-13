@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
 	protected
 
 	def profile_update_params
-		params.require(:profile).permit(:picture, :bio, :location, :website, :birthday)
+		params.require(:profile).permit(:picture, :background_picture, :bio, :location, :website, :birthday)
 	end
 
 	def set_profile

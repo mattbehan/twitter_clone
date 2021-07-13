@@ -1,17 +1,35 @@
-<div class="row"> <div class="col-sm"> <%= image_tag profile.picture.url(:thumb) %> </div> </div>
-
-<% if !profile.bio.blank? %>
-	<div class="row"> <div class="col-sm"> Bio: <%= profile.bio %> </div> </div>
+<% if profile.background_picture.blank? %>
+	<div class="row">
+		<div class="col-sm profile-picture-default-background-container"></div>
+	</div>
+<% elsif !profile.background_picture.blank? %>
+	<div class="row">
+		<div class="col-sm profile-picture-background-picture-container">
+			<%= image_tag profile.background_picture.variant( resize_to_fill: [760, 200, gravity: 'center'] ), class: "profile-pic-med-background" %>
+		</div>
+	</div>
 <% end %>
 
-<% if !profile.location.blank? %>
-	<div class="row"> <div class="col-sm"> Location: <%= profile.location %> </div> </div>
+<% if profile.picture.blank? %>
+	<div class="row"> 
+		<div class="col-sm"> 
+			<%= image_tag "profile_pics/missing.png", class: "profile-pic-med-default" %>
+		</div>
+	</div>
+<% else %>
+	<div class="row"> 
+		<div class="col-sm"> 
+			<%= image_tag profile.picture.variant( resize_to_fill: [130, 130, gravity: 'center'] ), class: "profile-pic-med" %>
+		</div>
+	</div>
 <% end %>
 
-<% if !profile.website.blank? %>
-	<div class="row"> <div class="col-sm"> Website: <%= profile.website %> </div> </div>
+<% profile.snippet_fields.each do |key, val| %>
+		<div class="row"> <div class="col-sm"> <b><%= key.capitalize %>:</b> <%= val %> </div> </div>
 <% end %>
 
-<% if !profile.birthday.blank? %>
-	<div class="row"> <div class="col-sm"> Birthday:<%= profile.birthday %> </div> </div>
-<% end %>
+<div class="row"> 
+	<div class="col-sm">
+		<b><%= @user.followings_followers.count %></b> followers. <b><%= @user.followings_following.count %></b> Following
+	</div>
+</div>

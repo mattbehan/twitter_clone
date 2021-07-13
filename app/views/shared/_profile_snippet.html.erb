@@ -1,25 +1,10 @@
-<div class="row"> <div class="col-sm"> <%#= image_tag profile.picture.url(:thumb) %> </div> </div>
-
-<% if !profile.bio.blank? %>
-	<div class="row"> <div class="col-sm"> Bio: <%= profile.bio %> </div> </div>
-<% end %>
-
-<% if !profile.location.blank? %>
-	<div class="row"> <div class="col-sm"> Location: <%= profile.location %> </div> </div>
-<% end %>
-
-<% if !profile.website.blank? %>
-	<div class="row"> <div class="col-sm"> Website: <%= profile.website %> </div> </div>
-<% end %>
-
-<% if !profile.birthday.blank? %>
-	<div class="row"> <div class="col-sm"> Birthday:<%= profile.birthday %> </div> </div>
-<% end %>
+<%= render partial: "profiles/show", locals: {profile: profile} %>
 
 <% if allowed_to_follow?(@user) %>
-	<div class="row"> <div class="col-sm">
+	<div class="row"> 
+		<div class="col-sm">
 		<%= button_to "Follow", user_followings_path(@user), class: "btn btn-primary" %> 
-	</div>
+		</div>
 	</div>
 <% end %>
 
@@ -27,7 +12,7 @@
 	<div class="row">
 		<div class="col-sm">
 		<%= button_to "Block", user_blockings_path(@user), class: "btn btn-danger" %>
-	</div>
+		</div>
 	</div>
 <% end %>
 
