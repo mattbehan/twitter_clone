@@ -19,14 +19,14 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 5.0.1'
 gem 'jquery-rails'
 # paperclip has been deprecated, upgrading to rails 6 to use activestorage
 # gem "paperclip", "~> 6.0.0"
 gem 'devise'
 gem 'faker'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

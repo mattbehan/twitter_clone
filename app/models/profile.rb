@@ -14,7 +14,6 @@ class Profile < ApplicationRecord
 		if: -> { background_picture.attached? },
 	}
 
-	# so
 	def snippet_fields
 		attributes.select { |field_name, val| ["birthday", "website", "bio", "location"].member?(field_name) && !val.blank? }
 	end

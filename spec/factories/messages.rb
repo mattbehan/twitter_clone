@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :message do
-    sender_id { 1 }
-    receiver_id { 1 }
-    text { "MyString" }
+    body { "MyText" }
+    user { nil }
+    conversation { nil }
   end
 end

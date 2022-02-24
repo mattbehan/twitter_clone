@@ -15,4 +15,13 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
+import Rails from "@rails/ujs"
+global.$ = jQuery;
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
+require("bootstrap/dist/js/bootstrap")
+import './src/application.scss'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
+Rails.start()
+ActiveStorage.start()

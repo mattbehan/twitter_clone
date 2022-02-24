@@ -1,0 +1,19 @@
+#messages-container {
+    position: fixed;
+    bottom: 0;
+    right: 5%;
+
+}
+
+#messages-container .accordion-body {
+    padding: 0rem !important;
+}
+
+#new-message-button {
+    position: relative;
+    left: 130px;
+}
+
+#messages-container button.accordion-button.collapsed {
+    min-width: 314px;
+}

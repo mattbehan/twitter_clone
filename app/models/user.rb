@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
+  # this way we can always assume that a user always has a profile, even if it isn't filled in whatsoever
   after_create {
     Profile.create(user_id: self.id)
   }
@@ -28,7 +29,7 @@ class User < ApplicationRecord
 
   has_many :messagee, foreign_key: :receiver_id, class_name: 'Message'  
   has_many :senders, through: :messagee
-  has_many :messaged, foreign_key: :sender_id, class_name: 'Message'
+  has_many :messaged, foreign_key: :sender_id, class_name: 'Message', dependent: :delete_all
   has_many :receivers, through: :messaged
 
   # these are all really just helper methods
