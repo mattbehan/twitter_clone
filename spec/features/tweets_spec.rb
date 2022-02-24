@@ -9,7 +9,7 @@ feature 'Creating a tweet' do
 			visit new_tweet_path
 			create_tweet_with("New tweet")
 			expect(current_path).to eq(root_path)
-			expect(Tweet.last.user_id).to eq(user.id)
+			expect(Tweet.last_created.user_id).to eq(user.id)
 		end
 	end
 

@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 users = []
 10.times do
 	user = User.new(
@@ -22,7 +14,7 @@ users = []
 	profile.bio = Faker::Lorem.paragraph
 	profile.website = Faker::Internet.url
 	profile.location = Faker::Address.city
-	profile.birthday = Faker::Date.between(80.years.ago, 15.years.ago)
+	profile.birthday = Faker::Date.between(from: 80.years.ago, to: 15.years.ago)
 	profile.save
 end
 
@@ -32,9 +24,9 @@ users.each do |user1|
 		following.save
 	end
 	tweet1 = Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
-	tweet1.update(created_at: Faker::Date.between(80.days.ago, 15.seconds.ago))
+	tweet1.update(created_at: Faker::Date.between(from: 80.days.ago, to: 15.seconds.ago))
 	tweet2 = Tweet.create(user_id: user1.id, message: Faker::Lorem.paragraph)
-	tweet2.update(created_at: Faker::Date.between(80.days.ago, 15.seconds.ago))
+	tweet2.update(created_at: Faker::Date.between(from: 80.days.ago, to: 15.seconds.ago))
 end
 
 

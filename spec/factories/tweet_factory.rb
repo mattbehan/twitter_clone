@@ -2,7 +2,7 @@ FactoryBot.define do
 
 	factory :tweet do
 
-		message "Test tweet"
+		message { "Test tweet" }
 		user 
 
 	end

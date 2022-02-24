@@ -4,19 +4,54 @@
     <title>GaslightTwitter</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application', media: 'all' %> 
   </head>
 
   <body>
-  	<%= render partial: "layouts/navbar" %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert">
-          <%= value %>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
+    	<%= render partial: "layouts/navbar" %>
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="alert">
+            <%= value %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+  <% if user_signed_in? %>
+      <div class="accordion" id="messages-container">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Messages
+            </button>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#messages-container">
+              <div class="accordion-body">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <button type="button" id='new-message-button' class="btn btn-outline-primary"> New Message <i class="bi bi-envelope"></i></button>
+                  </li>
+                  <!-- 
+                  make this so it displays each conversation the user has
+                  when the user clicks a converation, send request to load all messages in that conversation, and display a back arrow that reloads all conversations
+                   -->
+                  <%= form_for :users, :url => "/users/message_user", :html => { :method => 'GET' } do |f| %>
+                    <% @user.users_followed.each do |user| %>
+                      <li class="list-group-item">
+
+                            <%= radio_button_tag(:receiver_id, user.id) %>
+                            <%= label_tag(:name, user.name) %> <br>
+                            <input type='hidden' name='id' value=<%user.id%>/>
+                      </li>
+                      <% end %>
+                    <%= f.submit "Chat"%>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </h2>
+      </div>
+     </div>
+  <% end %>
   </body>
 </html>

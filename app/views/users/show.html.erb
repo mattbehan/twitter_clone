@@ -1,10 +1,11 @@
 <div class="row justify-content-between">
-	<div class="col-3">
+	<div class="col-8">
 		<%= render partial: "shared/profile_snippet", locals: {profile: @user.profile} %>
 
 		<% if owner?(@user.id) %>
 			<%= link_to "Edit Profile", edit_user_profile_path([@user.id, @user.profile.id]), class: "btn btn-primary" %>
 		<% end %>
+
 	</div>
 
 	<%= render partial: "shared/timeline", locals: {timeline: @timeline} %>

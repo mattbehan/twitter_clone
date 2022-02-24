@@ -29,11 +29,12 @@ ActiveRecord::Migration.maintain_test_schema!
 require 'devise'
 require_relative 'support/support_macros'
 require 'capybara/rails'
+require 'support/factory_bot'
 include Warden::Test::Helpers
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{::Rails.root}/spec/factories"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -60,7 +61,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Warden::Test::Helpers
-  config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.include SupportMacros::Features, type: :feature
   Shoulda::Matchers.configure do |config|

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
+  # this way we can always assume that a user always has a profile, even if it isn't filled in whatsoever
   after_create {
     Profile.create(user_id: self.id)
   }
@@ -12,19 +13,24 @@ class User < ApplicationRecord
   validates :handle, presence: true
   validates :handle, uniqueness: true
 
-  has_many :tweets
+  has_many :tweets, dependent: :delete_all
   has_many :followings_following, class_name: :Following, foreign_key: :following_user_id, inverse_of: :following_user
   has_many :followings_followers, class_name: :Following, foreign_key: :followed_user_id, inverse_of: :followed_user
-  has_many :users_followed, through: :followings_following, source: :followed_user
-  has_many :users_followers, through: :followings_followers, source: :following_user
+  has_many :users_followed, through: :followings_following, source: :followed_user, dependent: :delete_all
+  has_many :users_followers, through: :followings_followers, source: :following_user, dependent: :delete_all
 
-  has_many :blockings
+  has_many :blockings, dependent: :delete_all
   has_many :blockings_blocked_users, class_name: :Blocking, foreign_key: :blocked_user_id
 
   has_many :blocked_users, through: :blockings
   has_many :users_blocked_by, through: :blockings_blocked_users, source: :user
 
   has_one :profile
+
+  has_many :messagee, foreign_key: :receiver_id, class_name: 'Message'  
+  has_many :senders, through: :messagee
+  has_many :messaged, foreign_key: :sender_id, class_name: 'Message', dependent: :delete_all
+  has_many :receivers, through: :messaged
 
   # these are all really just helper methods
   def follows? target_user

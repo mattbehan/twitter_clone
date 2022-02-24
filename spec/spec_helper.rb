@@ -14,10 +14,27 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
+# require 'support/factory_bot'
+
+# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  factory_bot_results = {}
+  config.before(:suite) do
+    ActiveSupport::Notifications.subscribe("factory_bot.run_factory") do |name, start, finish, id, payload|
+      factory_name = payload[:name]
+      strategy_name = payload[:strategy]
+      factory_bot_results[factory_name] ||= {}
+      factory_bot_results[factory_name][strategy_name] ||= 0
+      factory_bot_results[factory_name][strategy_name] += 1
+    end
+  end
+
+  config.after(:suite) do
+    puts factory_bot_results
+  end
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
@@ -34,7 +51,7 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended, and will default to
-    # `true` in RSpec 4.
+    # `true` in RSpec 4.f
     mocks.verify_partial_doubles = true
   end
 
